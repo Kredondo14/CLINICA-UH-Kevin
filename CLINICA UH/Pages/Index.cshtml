@@ -1,0 +1,140 @@
+﻿@page
+@model CLINICA_UH.Pages.UsuariosModel
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consulta de Pacientes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/Estilo.css" />
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2 class="text-center text-white bg-primary p-3 rounded">Consulta de Pacientes</h2>
+
+        <div class="row">
+            <!-- Barra lateral -->
+            <div class="col-md-2 bg-dark p-3 text-center rounded">
+                <button class="btn btn-danger w-100 mb-2">Borrar</button>
+                <button class="btn btn-danger w-100 mb-2">Borrar</button>
+                <button class="btn btn-success w-100">Agregar</button>
+            </div>
+
+            <!-- Tabla de pacientes -->
+            <div class="col-md-10 bg-info p-4 rounded">
+                <div class="table-responsive">
+                    <table class="table table-bordered bg-white">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>1 Apellido</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Edad</th>
+                                <th>Médico</th>
+                                <th>Teléfono</th>
+                                <th>Especialidad</th>
+                                <th>#Consulta</th>
+                                <th>Fecha Atención</th>
+                                <th>Hora Atención</th>
+                                <th>Consultorio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var usuario in Model.Usuarios)
+                            {
+                                <tr>
+                                    <td>@usuario.Cedula</td>
+                                    <td>@usuario.Nombre</td>
+                                    <td>@usuario.Apellido</td>
+                                    <td>@usuario.FechaNacimiento.ToShortDateString()</td>
+                                    <td>@usuario.Edad</td>
+                                    <td>@usuario.Medico</td>
+                                    <td>@usuario.Telefono</td>
+                                    <td>@usuario.Especialidad</td>
+                                    <td>@usuario.NumeroConsulta</td>
+                                    <td>@usuario.FechaAtencion.ToShortDateString()</td>
+                                    <td>@usuario.HoraAtencion.ToString("HH:mm")</td>
+                                    <td>@usuario.Consultorio</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Formulario de ingreso -->
+                <div class="bg-light p-4 rounded">
+                    <h4 class="text-center text-danger">Agregar Paciente</h4>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Cédula</label>
+                                <input type="text" name="Cedula" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" name="Nombre" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">1 Apellido</label>
+                                <input type="text" name="Apellido" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Fecha Nacimiento</label>
+                                <input type="date" name="FechaNacimiento" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label class="form-label">Edad</label>
+                                <input type="number" name="Edad" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Médico</label>
+                                <input type="text" name="Medico" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Teléfono</label>
+                                <input type="text" name="Telefono" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Especialidad</label>
+                                <input type="text" name="Especialidad" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label class="form-label">#Consulta</label>
+                                <input type="text" name="NumeroConsulta" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Fecha Atención</label>
+                                <input type="date" name="FechaAtencion" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Hora Atención</label>
+                                <input type="time" name="HoraAtencion" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Consultorio</label>
+                                <input type="text" name="Consultorio" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Guardar Paciente</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
